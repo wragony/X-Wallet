@@ -94,11 +94,13 @@ flutter:
   fonts:
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/ReadexPro-Light.ttf
+          weight: 300
+        - asset: assets/fonts/ReadexPro-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Inter-Medium.ttf
+        - asset: assets/fonts/ReadexPro-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Inter-Bold.ttf
+        - asset: assets/fonts/ReadexPro-Bold.ttf
           weight: 700
   #
   # For details regarding fonts from package dependencies,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xwallet/src/common/extension/string_ext.dart';
+
+import '../../common/extension/string_ext.dart';
 
 class AppColors {
   static MaterialColor getMaterialColor(Color color) {

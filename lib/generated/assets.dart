@@ -2,9 +2,10 @@
 class Assets {
   Assets._();
 
-  static const String fontsInterBold = 'assets/fonts/Inter-Bold.ttf';
-  static const String fontsInterMedium = 'assets/fonts/Inter-Medium.ttf';
-  static const String fontsInterRegular = 'assets/fonts/Inter-Regular.ttf';
+  static const String fontsReadexProBold = 'assets/fonts/ReadexPro-Bold.ttf';
+  static const String fontsReadexProLight = 'assets/fonts/ReadexPro-Light.ttf';
+  static const String fontsReadexProMedium = 'assets/fonts/ReadexPro-Medium.ttf';
+  static const String fontsReadexProRegular = 'assets/fonts/ReadexPro-Regular.ttf';
   static const String fontsSkia = 'assets/fonts/Skia.ttf';
 
 }
