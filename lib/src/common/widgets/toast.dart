@@ -17,8 +17,8 @@ class XToast {
       msg: msg,
       toastLength: toastLength,
       gravity: gravity ?? ToastGravity.CENTER,
-      backgroundColor: backgroundColor ?? AppColors.Gray24,
-      textColor: textColor ?? AppColors.White,
+      backgroundColor: backgroundColor ?? AppColors.Otline,
+      textColor: textColor ?? AppColors.Secondary,
     );
   }
 

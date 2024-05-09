@@ -3,159 +3,84 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class FontStyles {
-  static TextStyle bold() {
-    return const TextStyle(
+  static TextStyle Heading({Color? color}) {
+    return TextStyle(
       fontFamily: 'ReadexPro',
+      color: color ?? AppColors.Text,
+      fontSize: 32,
       fontWeight: FontWeight.bold,
     );
   }
 
-  static TextStyle regular() {
-    return const TextStyle(
+  static TextStyle LargeBold({Color? color}) {
+    return TextStyle(
       fontFamily: 'ReadexPro',
-      fontWeight: FontWeight.normal,
-    );
-  }
-
-  static TextStyle medium() {
-    return const TextStyle(
-      fontFamily: 'ReadexPro',
+      color: color ?? AppColors.Text,
+      fontSize: 18,
       fontWeight: FontWeight.w500,
     );
   }
 
-  static TextStyle H1({Color? color, FontWeight? fontWeight}) {
+  static TextStyle Large({Color? color}) {
     return TextStyle(
       fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Black,
-      fontSize: 96,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle H2({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Black,
-      fontSize: 60,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle H3({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Black,
-      fontSize: 48,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle H4({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Black,
-      fontSize: 34,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle H5({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Black,
-      fontSize: 24,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle H6({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Black,
-      fontSize: 20,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle Title1({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
+      color: color ?? AppColors.Text,
       fontSize: 18,
-      fontWeight: fontWeight ?? FontWeight.bold,
+      fontWeight: FontWeight.normal,
     );
   }
 
-  static TextStyle Title2({Color? color, FontWeight? fontWeight}) {
+  static TextStyle MediumBold({Color? color}) {
     return TextStyle(
       fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
+      color: color ?? AppColors.Text,
       fontSize: 16,
-      fontWeight: fontWeight ?? FontWeight.bold,
+      fontWeight: FontWeight.w500,
     );
   }
 
-  static TextStyle SubTitle1({Color? color, FontWeight? fontWeight}) {
+  static TextStyle Medium({Color? color}) {
     return TextStyle(
       fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
-      fontSize: 18,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle SubTitle2({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
+      color: color ?? AppColors.Text,
       fontSize: 16,
-      fontWeight: fontWeight ?? FontWeight.normal,
+      fontWeight: FontWeight.normal,
     );
   }
 
-  static TextStyle SubTitle3({Color? color, FontWeight? fontWeight}) {
+  static TextStyle SmallBold({Color? color}) {
     return TextStyle(
       fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
+      color: color ?? AppColors.Text,
       fontSize: 14,
-      fontWeight: fontWeight ?? FontWeight.normal,
+      fontWeight: FontWeight.w500,
     );
   }
 
-  static TextStyle Content1({Color? color, FontWeight? fontWeight}) {
+  static TextStyle Small({Color? color}) {
     return TextStyle(
       fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray7,
-      fontSize: 12,
-      fontWeight: fontWeight ?? FontWeight.normal,
-    );
-  }
-
-  static TextStyle Button12({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
-      fontSize: 12,
-      fontWeight: fontWeight ?? FontWeight.bold,
-    );
-  }
-
-  static TextStyle Button14({Color? color, FontWeight? fontWeight}) {
-    return TextStyle(
-      fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
+      color: color ?? AppColors.Text,
       fontSize: 14,
-      fontWeight: fontWeight ?? FontWeight.bold,
+      fontWeight: FontWeight.normal,
     );
   }
 
-  static TextStyle Button16({Color? color, FontWeight? fontWeight}) {
+  static TextStyle xSmallBold({Color? color}) {
     return TextStyle(
       fontFamily: 'ReadexPro',
-      color: color ?? AppColors.Gray24,
-      fontSize: 16,
-      fontWeight: fontWeight ?? FontWeight.bold,
+      color: color ?? AppColors.Text,
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle xSmall({Color? color}) {
+    return TextStyle(
+      fontFamily: 'ReadexPro',
+      color: color ?? AppColors.Text,
+      fontSize: 12,
+      fontWeight: FontWeight.normal,
     );
   }
 }

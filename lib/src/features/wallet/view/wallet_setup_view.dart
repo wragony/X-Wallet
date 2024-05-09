@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../common/base/index.dart';
-import '../../../common/resources/colors.dart';
 import '../../../common/resources/styles.dart';
 import '../vm/wallet_setup_vm.dart';
 
@@ -20,11 +19,9 @@ class WalletSetupView extends BaseView<WalletSetupVM> {
           const SizedBox(height: 60),
           Text(
             "Wallet Setup",
-            maxLines: 2,
-            softWrap: true,
-            style: FontStyles.SubTitle1(color: AppColors.Gray24),
+            maxLines: 1,
+            style: FontStyles.Heading(),
           ),
-          const Spacer(flex: 1),
         ],
       ),
     );

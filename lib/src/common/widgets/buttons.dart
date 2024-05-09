@@ -1,101 +1,212 @@
 import 'package:flutter/material.dart';
+import 'package:xwallet/src/common/extension/string_ext.dart';
 
-class XTextButton extends StatelessWidget {
-  const XTextButton(
-      {this.child,
-      this.color,
-      this.onPressed,
-      this.borderRadius = 8,
-      this.padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      super.key});
+import '../resources/colors.dart';
+import '../resources/styles.dart';
+import 'xbuttons.dart';
 
-  final Color? color;
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
+    super.key,
+    this.child,
+    this.onPressed,
+    this.padding,
+    required this.text,
+    this.icon,
+    this.iconLeft = true,
+  });
+
   final Widget? child;
+  final EdgeInsetsGeometry? padding;
   final Function? onPressed;
-  final double borderRadius;
-  final EdgeInsetsGeometry padding;
+  final String text;
+  final String? icon;
+  final bool iconLeft;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius))),
-        backgroundColor: MaterialStateProperty.all(color),
-        padding: MaterialStateProperty.all(padding),
-      ),
-      onPressed: onPressed as void Function()?,
-      child: child!,
+    Widget? iconWidget = !icon.isEmptyOrNull
+        ? ImageIcon(
+            size: 24,
+            AssetImage(icon!),
+            color: AppColors.Surface,
+          )
+        : const SizedBox(width: 0);
+    Widget textWidget = Text(
+      text,
+      style: FontStyles.MediumBold(color: AppColors.Surface),
+    );
+    Widget sizeBox = const SizedBox(width: 4);
+    var childWidget = iconLeft
+        ? [iconWidget, sizeBox, textWidget]
+        : [textWidget, sizeBox, iconWidget];
+    return XTextButton(
+      key: key,
+      color: AppColors.Primary,
+      onPressed: onPressed,
+      borderRadius: 12,
+      padding: padding ?? const EdgeInsets.all(14),
+      child: child ??
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: childWidget,
+          ),
     );
   }
 }
 
-class XOutlinedButton extends StatelessWidget {
-  const XOutlinedButton(
-      {this.child,
-      this.textColor,
-      this.outlineColor,
-      required this.onPressed,
-      this.borderRadius = 8,
-      this.padding = const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
-      super.key});
+class SecondaryButton extends StatelessWidget {
+  const SecondaryButton({
+    super.key,
+    this.child,
+    this.onPressed,
+    this.padding,
+    required this.text,
+    this.icon,
+    this.iconLeft = true,
+  });
 
   final Widget? child;
-  final Function onPressed;
-  final double borderRadius;
-  final Color? outlineColor;
-  final Color? textColor;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
+  final Function? onPressed;
+  final String text;
+  final String? icon;
+  final bool iconLeft;
 
   @override
   Widget build(BuildContext context) {
-    ThemeData currentTheme = Theme.of(context);
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        foregroundColor: textColor ?? outlineColor ?? currentTheme.primaryColor,
-        padding: padding,
-        textStyle: TextStyle(color: currentTheme.primaryColor),
-        side: BorderSide(color: outlineColor ?? currentTheme.primaryColor),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-      ),
-      onPressed: onPressed as void Function()?,
-      child: child!,
+    Widget? iconWidget = !icon.isEmptyOrNull
+        ? ImageIcon(
+            size: 24,
+            AssetImage(icon!),
+            color: AppColors.Secondary,
+          )
+        : const SizedBox(width: 0);
+    Widget textWidget = Text(
+      text,
+      style: FontStyles.MediumBold(color: AppColors.Secondary),
+    );
+    Widget sizeBox = const SizedBox(width: 4);
+    var childWidget = iconLeft
+        ? [iconWidget, sizeBox, textWidget]
+        : [textWidget, sizeBox, iconWidget];
+    return XTextButton(
+      key: key,
+      color: AppColors.Otline,
+      onPressed: onPressed,
+      borderRadius: 12,
+      padding: padding ?? const EdgeInsets.all(14),
+      child: child ??
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: childWidget,
+          ),
     );
   }
 }
 
-class XElevatedButtonWithIcon extends StatelessWidget {
-  const XElevatedButtonWithIcon(
-      {required this.label,
-      this.color,
-      this.iconData,
-      required this.onPressed,
-      this.borderRadius = 8,
-      this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      super.key});
+class PrimaryOutlineButton extends StatelessWidget {
+  const PrimaryOutlineButton({
+    super.key,
+    this.child,
+    this.onPressed,
+    this.padding,
+    required this.text,
+    this.icon,
+    this.iconLeft = true,
+  });
 
-  final Widget label;
-  final Color? color;
-  final IconData? iconData;
-  final Function onPressed;
-  final double borderRadius;
-  final EdgeInsetsGeometry padding;
+  final Widget? child;
+  final EdgeInsetsGeometry? padding;
+  final Function? onPressed;
+  final String text;
+  final String? icon;
+  final bool iconLeft;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: onPressed as void Function()?,
-      icon: Icon(iconData),
-      label: label,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        padding: padding,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-      ),
+    Widget? iconWidget = !icon.isEmptyOrNull
+        ? ImageIcon(
+            size: 24,
+            AssetImage(icon!),
+            color: AppColors.Primary,
+          )
+        : const SizedBox(width: 0);
+    Widget textWidget = Text(
+      text,
+      style: FontStyles.MediumBold(color: AppColors.Primary),
+    );
+    Widget sizeBox = const SizedBox(width: 4);
+    var childWidget = iconLeft
+        ? [iconWidget, sizeBox, textWidget]
+        : [textWidget, sizeBox, iconWidget];
+    return XOutlinedButton(
+      key: key,
+      outlineColor: AppColors.Primary,
+      onPressed: onPressed,
+      borderRadius: 12,
+      borderWidth: 2,
+      padding: padding ?? const EdgeInsets.all(14),
+      child: child ??
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: childWidget,
+          ),
+    );
+  }
+}
+
+class PrimarySmallButton extends StatelessWidget {
+  const PrimarySmallButton({
+    super.key,
+    this.child,
+    this.onPressed,
+    this.padding,
+    required this.text,
+    this.icon,
+    this.iconLeft = true,
+  });
+
+  final Widget? child;
+  final EdgeInsetsGeometry? padding;
+  final Function? onPressed;
+  final String text;
+  final String? icon;
+  final bool iconLeft;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget? iconWidget = !icon.isEmptyOrNull
+        ? ImageIcon(
+            size: 24,
+            AssetImage(icon!),
+            color: AppColors.Surface,
+          )
+        : const SizedBox(width: 0);
+    Widget textWidget = Text(
+      text,
+      style: FontStyles.Small(color: AppColors.Surface),
+    );
+    Widget sizeBox = const SizedBox(width: 4);
+    var childWidget = iconLeft
+        ? [iconWidget, sizeBox, textWidget]
+        : [textWidget, sizeBox, iconWidget];
+    return XTextButton(
+      key: key,
+      color: AppColors.Primary,
+      onPressed: onPressed,
+      borderRadius: 12,
+      padding:
+          padding ?? const EdgeInsets.symmetric(vertical: 6, horizontal: 7.5),
+      child: child ??
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: childWidget,
+          ),
     );
   }
 }

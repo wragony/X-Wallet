@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         Locale('zh', 'CN'),
       ],
       locale: const Locale('en', 'US'),
-      initialRoute: AppRoutes.root,
+      initialRoute: AppRoutes.test,
       routes: AppRoutes.mappingRoutes,
     );
   }

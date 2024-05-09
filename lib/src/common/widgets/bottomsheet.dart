@@ -32,7 +32,7 @@ class _DraggableBottomSheetWidgetState
                   width: 48.0,
                   height: 8.0,
                   decoration: BoxDecoration(
-                    color: AppColors.Gray4,
+                    color: AppColors.Otline,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),

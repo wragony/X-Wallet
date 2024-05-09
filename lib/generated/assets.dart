@@ -7,5 +7,10 @@ class Assets {
   static const String fontsReadexProMedium = 'assets/fonts/ReadexPro-Medium.ttf';
   static const String fontsReadexProRegular = 'assets/fonts/ReadexPro-Regular.ttf';
   static const String fontsSkia = 'assets/fonts/Skia.ttf';
+  static const String imagesIcArrowSquareUpRight = 'assets/images/ic_arrow_square_up_right.png';
+  static const String imagesIcCheckedRingLight = 'assets/images/ic_checked_ring_light.png';
+  static const String imagesIcRadioCheckedLight = 'assets/images/ic_radio_checked_light.png';
+  static const String imagesIcRadioUncheckedLight = 'assets/images/ic_radio_unchecked_light.png';
+  static const String imagesIcUncheckedRingLight = 'assets/images/ic_unchecked_ring_light.png';
 
 }
