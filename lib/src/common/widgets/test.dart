@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:xwallet/src/common/extension/string_ext.dart';
 import 'package:xwallet/src/common/utils/logger.dart';
 
 import '../../../../generated/assets.dart';
@@ -14,6 +15,7 @@ import 'pincode.dart';
 import 'step_indicator.dart';
 import 'switch.dart';
 import 'toast.dart';
+import 'token_card.dart';
 
 class TestView extends StatefulWidget {
   const TestView({super.key});
@@ -28,7 +30,10 @@ class _TestViewState extends State<TestView> {
   bool toggleValue = false;
   String currentText = "";
   bool hasError = false;
-
+  final GlobalKey<FormState> mFormKey = GlobalKey<FormState>();
+  final GlobalKey mInputKey = GlobalKey();
+  String suffixIcon = Assets.imagesIcEyeLight;
+  bool isInputError = false;
   TextEditingController textEditingController = TextEditingController();
   late StreamController<ErrorAnimationType> errorController;
 
@@ -49,7 +54,7 @@ class _TestViewState extends State<TestView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.White,
+      backgroundColor: AppColors.Background,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -177,41 +182,82 @@ class _TestViewState extends State<TestView> {
                     return true;
                   },
                 ),
-                PrimaryButton(
-                  text: "Verification",
-                  icon: Assets.imagesIcArrowSquareUpRight,
-                  onPressed: () {
-                    XLogger.d("verifyPin");
-                    verifyPin();
-                  },
+                Form(
+                  key: mFormKey,
+                  child: Column(
+                    children: [
+                      InputFormField(
+                        key: mInputKey,
+                        height: 50,
+                        textEditingController: inputController,
+                        prefix: ImageIcon(
+                          const AssetImage(Assets.imagesIcMailLight),
+                          color: AppColors.Primary,
+                        ),
+                        labelText: "Email address",
+                        hintText: "abc@email.com",
+                        suffix: InkWell(
+                          child: Image.asset(suffixIcon),
+                          onTap: () {
+                            if (isInputError) {
+                              return;
+                            }
+                            setState(() {
+                              suffixIcon = Assets.imagesIcEyeHideLight;
+                            });
+                          },
+                        ),
+                        borderType: BorderType.outlined,
+                        borderColor: AppColors.Primary,
+                        style: FontStyles.Medium(),
+                        hintTextStyle:
+                            FontStyles.Medium(color: AppColors.Otline),
+                        labelTextStyle:
+                            FontStyles.xSmall(color: AppColors.Secondary),
+                        contentPadding: const EdgeInsets.only(
+                          left: 14,
+                          right: 14,
+                          top: 2,
+                          bottom: 12,
+                        ),
+                        onChanged: (String? v, bool isError) {
+                          isInputError = isError;
+                        },
+                        validator: (String? v, bool isError) {
+                          isInputError = isError;
+                          if (isError) {
+                            setState(() {
+                              suffixIcon = Assets.imagesIcCloseLight;
+                            });
+                          }
+                          if (v.isEmptyOrNull) {
+                            return "Not empty";
+                          }
+                          if (inputController.text != "AAA") {
+                            return "Input error";
+                          }
+                          return "";
+                        },
+                        floatingLabelBehavior: FloatingLabelBehavior.auto,
+                        enableDefaultValidation: true,
+                        bottomMargin: 10,
+                      ),
+                      const SizedBox(height: 16),
+                      PrimaryButton(
+                        text: "Verification",
+                        icon: Assets.imagesIcArrowSquareUpRight,
+                        onPressed: () {
+                          XLogger.d("verifyPin");
+                          verifyPin();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
-                InputFormField(
-                  height: 50,
-                  textEditingController: inputController,
-                  prefix: ImageIcon(
-                    const AssetImage(Assets.imagesIcMailLight),
-                    color: AppColors.Primary,
-                  ),
-                  labelText: "Email address",
-                  hintText: "abc@email.com",
-                  suffix: InkWell(
-                    child: Image.asset(Assets.imagesIcCheckLight),
-                    onTap: () {},
-                  ),
-                  borderType: BorderType.outlined,
-                  borderColor: AppColors.Primary,
-                  style: FontStyles.Medium(),
-                  hintTextStyle: FontStyles.Medium(color: AppColors.Otline),
-                  labelTextStyle: FontStyles.xSmall(color: AppColors.Secondary),
-                  contentPadding: const EdgeInsets.only(
-                    left: 14,
-                    right: 14,
-                    top: 2,
-                    bottom: 12,
-                  ),
-                  bottomMargin: 10, // Optional
-                ),
+                const TokenCard1(),
+                const SizedBox(height: 16),
+                const TokenMarketCard1(),
                 const SizedBox(height: 16),
               ],
             ),
@@ -222,6 +268,7 @@ class _TestViewState extends State<TestView> {
   }
 
   void verifyPin() {
+    mFormKey.currentState!.validate();
     if (currentText.length != 6 || currentText != "123456") {
       errorController.add(ErrorAnimationType.shake);
       setState(() => hasError = true);

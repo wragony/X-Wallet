@@ -33,6 +33,7 @@ class InputFormField extends StatefulWidget {
     this.borderColor = Colors.blue,
     this.fillColor,
     this.errorColor = Colors.red,
+    this.onChanged,
   })  : assert(obscuringCharacter.isNotNull && obscuringCharacter.length == 1),
         assert(
           !(password.isNotNull && obscureText.isNotNull),
@@ -88,7 +89,9 @@ class InputFormField extends StatefulWidget {
   ///
   /// Returns an error string to display if the input is invalid, or null
   /// otherwise.
-  final String? Function(String?)? validator;
+  final String? Function(String?, bool)? validator;
+
+  final Function(String?, bool)? onChanged;
 
   /// Enables default validation. Takes care of null and empty value check if
   /// enabled
@@ -133,10 +136,10 @@ class InputFormField extends StatefulWidget {
   final Color errorColor;
 
   @override
-  State<InputFormField> createState() => _InputFormFieldState();
+  State<InputFormField> createState() => InputFormFieldState();
 }
 
-class _InputFormFieldState extends State<InputFormField> {
+class InputFormFieldState extends State<InputFormField> {
   bool isError = false;
   bool _showPassword = true;
   String? feedback;
@@ -162,7 +165,7 @@ class _InputFormFieldState extends State<InputFormField> {
             textAlignVertical: TextAlignVertical.center,
             style: widget.style,
             decoration: InputDecoration(
-              contentPadding: widget.contentPadding ?? _defaultConentPadding(),
+              contentPadding: widget.contentPadding ?? _defaultContentPadding(),
               labelText: widget.labelText,
               labelStyle: widget.labelTextStyle,
               hintText: widget.hintText,
@@ -189,6 +192,7 @@ class _InputFormFieldState extends State<InputFormField> {
               if (isError) {
                 setState(() => isError = false);
               }
+              widget.onChanged!(v, isError);
             },
             validator: (String? v) {
               /// Default validation. Fields can't be empty. If you want to disable it
@@ -198,7 +202,7 @@ class _InputFormFieldState extends State<InputFormField> {
                 feedback = "Required";
               } else if (widget.validator != null) {
                 setState(() => isError = true);
-                feedback = widget.validator!(v);
+                feedback = widget.validator!(v, isError);
               }
               return feedback;
             },
@@ -239,7 +243,7 @@ class _InputFormFieldState extends State<InputFormField> {
 
   Color _getBorderColor() => isError ? widget.errorColor : widget.borderColor;
 
-  EdgeInsets _defaultConentPadding() {
+  EdgeInsets _defaultContentPadding() {
     return const EdgeInsets.symmetric(
       horizontal: 10,
       vertical: 10,

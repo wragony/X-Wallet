@@ -48,6 +48,15 @@ class FontStyles {
     );
   }
 
+  static TextStyle Regular({Color? color, double? fontSize}) {
+    return TextStyle(
+      fontFamily: 'ReadexPro',
+      color: color ?? AppColors.Text,
+      fontSize: fontSize ?? 14,
+      fontWeight: FontWeight.normal,
+    );
+  }
+
   static TextStyle SmallBold({Color? color}) {
     return TextStyle(
       fontFamily: 'ReadexPro',

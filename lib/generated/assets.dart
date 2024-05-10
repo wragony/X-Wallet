@@ -17,6 +17,7 @@ class Assets {
   static const String imagesIcMailLight = 'assets/images/ic_mail_light.png';
   static const String imagesIcRadioCheckedLight = 'assets/images/ic_radio_checked_light.png';
   static const String imagesIcRadioUncheckedLight = 'assets/images/ic_radio_unchecked_light.png';
+  static const String imagesIcTokenEthereum = 'assets/images/ic_token_ethereum.png';
   static const String imagesIcUncheckedRingLight = 'assets/images/ic_unchecked_ring_light.png';
 
 }
