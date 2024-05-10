@@ -36,23 +36,26 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         setState(() => isChecked = !isChecked);
         widget.onChanged?.call(isChecked);
       },
-      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        isChecked
-            ? Image.asset(
-                widget.checkedIcon ?? Assets.imagesIcCheckedRingLight,
-              )
-            : Image.asset(
-                widget.uncheckedIcon ?? Assets.imagesIcUncheckedRingLight,
+      child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            isChecked
+                ? Image.asset(
+                    widget.checkedIcon ?? Assets.imagesIcCheckedRingLight,
+                  )
+                : Image.asset(
+                    widget.uncheckedIcon ?? Assets.imagesIcUncheckedRingLight,
+                  ),
+            const SizedBox(width: 8),
+            Padding(
+              padding: EdgeInsets.only(bottom: widget.paddingBottom ?? 0.0),
+              child: Text(
+                widget.text ?? "",
+                style: widget.textStyle ?? FontStyles.Small(),
               ),
-        const SizedBox(width: 8),
-        Padding(
-          padding: EdgeInsets.only(bottom: widget.paddingBottom ?? 0.0),
-          child: Text(
-            widget.text ?? "",
-            style: widget.textStyle ?? FontStyles.Small(),
-          ),
-        ),
-      ]),
+            ),
+          ]),
     );
   }
 }
