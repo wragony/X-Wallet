@@ -168,6 +168,7 @@ class PrimarySmallButton extends StatelessWidget {
     required this.text,
     this.icon,
     this.iconLeft = true,
+    this.borderRadius,
   });
 
   final Widget? child;
@@ -176,6 +177,7 @@ class PrimarySmallButton extends StatelessWidget {
   final String text;
   final String? icon;
   final bool iconLeft;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +200,7 @@ class PrimarySmallButton extends StatelessWidget {
       key: key,
       color: AppColors.Primary,
       onPressed: onPressed,
-      borderRadius: 12,
+      borderRadius: borderRadius ?? 8,
       padding:
           padding ?? const EdgeInsets.symmetric(vertical: 6, horizontal: 7.5),
       child: child ??
