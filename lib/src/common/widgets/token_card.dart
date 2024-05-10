@@ -141,7 +141,7 @@ class TokenMarketCard1 extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: FontStyles.Regular(fontSize: 10),
                   ),
-                  Image.asset(Assets.imagesIcArrowSquareUpRight),
+                  Image.asset(Assets.imagesImgTokenRate),
                   Text(
                     'Low price 0,000116',
                     overflow: TextOverflow.ellipsis,
