@@ -9,6 +9,7 @@ import '../resources/colors.dart';
 import '../resources/styles.dart';
 import 'buttons.dart';
 import 'checkbox.dart';
+import 'input_form_field.dart';
 import 'pincode.dart';
 import 'step_indicator.dart';
 import 'switch.dart';
@@ -30,6 +31,8 @@ class _TestViewState extends State<TestView> {
 
   TextEditingController textEditingController = TextEditingController();
   late StreamController<ErrorAnimationType> errorController;
+
+  final TextEditingController inputController = TextEditingController();
 
   @override
   void initState() {
@@ -181,6 +184,33 @@ class _TestViewState extends State<TestView> {
                     XLogger.d("verifyPin");
                     verifyPin();
                   },
+                ),
+                const SizedBox(height: 16),
+                InputFormField(
+                  height: 50,
+                  textEditingController: inputController,
+                  prefix: ImageIcon(
+                    const AssetImage(Assets.imagesIcMailLight),
+                    color: AppColors.Primary,
+                  ),
+                  labelText: "Email address",
+                  hintText: "abc@email.com",
+                  suffix: InkWell(
+                    child: Image.asset(Assets.imagesIcCheckLight),
+                    onTap: () {},
+                  ),
+                  borderType: BorderType.outlined,
+                  borderColor: AppColors.Primary,
+                  style: FontStyles.Medium(),
+                  hintTextStyle: FontStyles.Medium(color: AppColors.Otline),
+                  labelTextStyle: FontStyles.xSmall(color: AppColors.Secondary),
+                  contentPadding: const EdgeInsets.only(
+                    left: 14,
+                    right: 14,
+                    top: 2,
+                    bottom: 12,
+                  ),
+                  bottomMargin: 10, // Optional
                 ),
                 const SizedBox(height: 16),
               ],
