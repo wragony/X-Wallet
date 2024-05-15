@@ -6,6 +6,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../resources/colors.dart';
 import '../resources/styles.dart';
 
+export 'package:pin_code_fields/pin_code_fields.dart';
+
 class PinCode extends StatefulWidget {
   const PinCode({
     super.key,

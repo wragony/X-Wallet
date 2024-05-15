@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../generated/assets.dart';
 import '../resources/colors.dart';
@@ -175,5 +173,85 @@ class TokenMarketCard1 extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class TokenMarketCard2 extends StatelessWidget {
+  const TokenMarketCard2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        constraints: const BoxConstraints(
+          minWidth: 68,
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(0, 3),
+              color: Color(0x1A2F66F6),
+              blurRadius: 4.0,
+              spreadRadius: 0,
+              blurStyle: BlurStyle.inner,
+            ),
+          ],
+          color: AppColors.Surface,
+          border: Border.all(width: 2, color: AppColors.Surface),
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Sol/USD",
+                        maxLines: 1,
+                        style: FontStyles.Medium(),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        "40,11",
+                        maxLines: 1,
+                        style: FontStyles.Medium(),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        '+2.76',
+                        maxLines: 1,
+                        style: FontStyles.Small(color: AppColors.Up),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 24),
+                Image.asset(Assets.imagesIcTokenEthereum),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Image.asset(Assets.imagesImgTokenRate),
+            ),
+            Text(
+              "24H Vol.",
+              maxLines: 1,
+              style: FontStyles.xSmall(color: AppColors.Secondary),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              "150 897 992,26",
+              maxLines: 1,
+              style: FontStyles.xSmall(color: AppColors.Secondary),
+            ),
+          ],
+        ));
   }
 }

@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:xwallet/src/common/extension/string_ext.dart';
-import 'package:xwallet/src/common/utils/logger.dart';
+import 'package:xwallet/src/routes.dart';
 
 import '../../../../generated/assets.dart';
+import '../extension/string_ext.dart';
 import '../resources/colors.dart';
 import '../resources/styles.dart';
+import '../utils/density.dart';
+import '../utils/logger.dart';
 import 'buttons.dart';
 import 'checkbox.dart';
 import 'input_form_field.dart';
@@ -26,7 +27,7 @@ class TestView extends StatefulWidget {
   }
 }
 
-class _TestViewState extends State<TestView> {
+class _TestViewState extends State<TestView> with WidgetsBindingObserver {
   bool toggleValue = false;
   String currentText = "";
   bool hasError = false;
@@ -41,14 +42,57 @@ class _TestViewState extends State<TestView> {
 
   @override
   void initState() {
+    XLogger.d('>>>initState');
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      XLogger.d('>>>addPostFrameCallback: A single frame drawback callback');
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    XLogger.d('>>>didChangeAppLifecycleState:$state');
+  }
+
+  @override
+  void didUpdateWidget(covariant TestView oldWidget) {
+    XLogger.d('>>>didUpdateWidget');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void didChangeDependencies() {
+    XLogger.d('>>>didChangeDependencies');
+    super.didChangeDependencies();
+  }
+
+  @override
+  void deactivate() {
+    XLogger.d('>>>deactivate');
+    super.deactivate();
+  }
+
+  @override
+  void activate() {
+    XLogger.d('>>>activate');
+    super.activate();
+  }
+
+  @override
+  void reassemble() {
+    XLogger.d('>>>reassemble');
+    super.reassemble();
   }
 
   @override
   void dispose() {
+    XLogger.d('>>>dispose');
     errorController.close();
     super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
@@ -59,7 +103,7 @@ class _TestViewState extends State<TestView> {
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -73,7 +117,7 @@ class _TestViewState extends State<TestView> {
                   text: "Entered",
                   icon: Assets.imagesIcArrowSquareUpRight,
                   onPressed: () {
-                    XToast.show(msg: 'msg');
+                    Navigator.pushNamed(context, AppRoutes.root);
                   },
                 ),
                 const SizedBox(height: 16),
@@ -81,7 +125,7 @@ class _TestViewState extends State<TestView> {
                   text: "Entered",
                   icon: Assets.imagesIcArrowSquareUpRight,
                   onPressed: () {
-                    XToast.show(msg: 'msg');
+                    Navigator.pushNamed(context, "/sss");
                   },
                 ),
                 const SizedBox(height: 16),
@@ -259,6 +303,22 @@ class _TestViewState extends State<TestView> {
                 const SizedBox(height: 16),
                 const TokenMarketCard1(),
                 const SizedBox(height: 16),
+                Row(
+                  children: [
+                    SizedBox(
+                        width: (Density.instance.screenWidth - 3 * 16) / 2.0,
+                        child: const TokenMarketCard2()),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    SizedBox(
+                        width: (Density.instance.screenWidth - 3 * 16) / 2.0,
+                        child: const TokenMarketCard2()),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                const ListenerTest(),
+                const SizedBox(height: 16),
               ],
             ),
           ),
@@ -280,5 +340,69 @@ class _TestViewState extends State<TestView> {
         },
       );
     }
+  }
+}
+
+class ListenerTest extends StatefulWidget {
+  const ListenerTest({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _ListenerTestState();
+  }
+}
+
+class _ListenerTestState extends State<ListenerTest> {
+  double _left = 0;
+  double _top = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Listener(
+      child: GestureDetector(
+        child: Container(
+          height: 200,
+          child: Stack(
+            children: [
+              Positioned(
+                top: _top,
+                left: _left,
+                child: Container(
+                  color: Colors.red,
+                  width: 100,
+                  height: 100,
+                ),
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          XLogger.d('>>>GestureDetector:onTap');
+        },
+        onDoubleTap: () {
+          XLogger.d('>>>GestureDetector:onDoubleTap');
+        },
+        onLongPress: () {
+          XLogger.d('>>>GestureDetector:onLongPress');
+        },
+        onPanUpdate: (e) {
+          XLogger.d('>>>GestureDetector:onPanUpdate');
+          setState(() {
+            // Update the location
+            _left += e.delta.dx;
+            _top += e.delta.dy;
+          });
+        },
+      ),
+      onPointerDown: (event) {
+        XLogger.d('>>>Listener:onPointerDown');
+      },
+      onPointerMove: (event) {
+        XLogger.d('>>>Listener:onPointerMove');
+      },
+      onPointerUp: (event) {
+        XLogger.d('>>>Listener:onPointerUp');
+      },
+    );
   }
 }
