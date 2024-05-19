@@ -15,6 +15,12 @@ class Assets {
   static const String imagesIcEyeLight = 'assets/images/ic_eye_light.png';
   static const String imagesIcLockLight = 'assets/images/ic_lock_light.png';
   static const String imagesIcMailLight = 'assets/images/ic_mail_light.png';
+  static const String imagesIcNavBack = 'assets/images/ic_nav_back.png';
+  static const String imagesIcNavFilter = 'assets/images/ic_nav_filter.png';
+  static const String imagesIcNavHelp = 'assets/images/ic_nav_help.png';
+  static const String imagesIcNavProfile = 'assets/images/ic_nav_profile.png';
+  static const String imagesIcNavSearch = 'assets/images/ic_nav_search.png';
+  static const String imagesIcNavSetting = 'assets/images/ic_nav_setting.png';
   static const String imagesIcRadioCheckedLight = 'assets/images/ic_radio_checked_light.png';
   static const String imagesIcRadioUncheckedLight = 'assets/images/ic_radio_unchecked_light.png';
   static const String imagesIcTokenEthereum = 'assets/images/ic_token_ethereum.png';

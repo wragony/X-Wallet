@@ -98,6 +98,7 @@ class _TestViewState extends State<TestView> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: AppColors.Primary,),
       backgroundColor: AppColors.Background,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -133,7 +134,7 @@ class _TestViewState extends State<TestView> with WidgetsBindingObserver {
                   text: "Entered",
                   icon: Assets.imagesIcArrowSquareUpRight,
                   onPressed: () {
-                    XToast.show(msg: 'msg');
+                    Navigator.pushNamed(context, AppRoutes.settings);
                   },
                 ),
                 const SizedBox(height: 16),

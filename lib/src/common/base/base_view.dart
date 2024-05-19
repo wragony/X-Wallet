@@ -22,6 +22,8 @@ abstract class BaseView<T extends BaseViewModel> extends StatefulWidget {
 
   Widget? child(BuildContext context) => null;
 
+  PreferredSizeWidget? appBar(BuildContext context) => null;
+
   Widget? bottomNavigationBar(BuildContext context) => null;
 
   @override
@@ -47,7 +49,8 @@ class BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.backgroundColor ?? AppColors.White,
+      appBar: widget.appBar(context),
+      backgroundColor: widget.backgroundColor ?? AppColors.Background,
       body: SafeArea(
         child: AnimatedBuilder(
           animation: _model,
